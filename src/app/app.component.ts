@@ -1,30 +1,48 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { PlanetPage } from '../pages/planet/planet';
+import { StatsPage } from '../pages/stats/stats';
+import { GameService } from '../services/game.service';
+import { Storage } from '@ionic/storage';
+import { OptionsPage } from '../pages/options/options';
+import { Game } from '../models/game';
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnInit {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = PlanetPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+    private gameService: GameService, private storage: Storage) {
     this.initializeApp();
+  }
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
-
+  ngOnInit() {
+    this.gameService.planetNameObs.subscribe(name => {
+      this.pages = [
+        { title: name, component: PlanetPage },
+        { title: 'Stats', component: StatsPage },
+        { title: 'Options', component: OptionsPage }
+      ];
+    });
+    this.storage.ready().then(() => {
+      return this.storage.get('game');
+    }).then(val => {
+      if (val) {
+        this.gameService.game = JSON.parse(val);
+      } else {
+        this.gameService.game = new Game();
+        console.log('No saved game found');
+      }
+    });
   }
 
   initializeApp() {
