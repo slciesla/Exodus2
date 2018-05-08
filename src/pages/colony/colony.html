@@ -33,10 +33,63 @@
     <ion-card>
       <ion-card-header>
         <span>{{game.planet1.name}} </span>
-        <span class="easy">(Easy: {{game.planet1.scoreModifier * 100}}% Final Score)</span>
+        <span class="easy">(Easy: {{game.planet1.scoreModifier | percent:'1.1-2'}} Final Score)</span>
       </ion-card-header>
       <ion-card-content>
-        <div>The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.</div>
+        <div>{{game.planet1.description}}
+          <div>
+            <span>Biome: </span>
+            <span [ngClass]="{'easy': game.planet1.startingStats.biome === 'Temperate' || 
+              game.planet1.startingStats.biome === 'Savannah', 
+              'medium': game.planet1.startingStats.biome === 'Jungle' ||
+              game.planet1.startingStats.biome === 'Taiga',
+              'hard': game.planet1.startingStats.biome === 'Tundra' ||
+              game.planet1.startingStats.biome === 'Desert' ||
+              game.planet1.startingStats.biome === 'Ocean'}">
+              {{game.planet1.startingStats.biome}}
+            </span>
+          </div>
+          <div>
+            <span>Water: </span>
+            <span [ngClass]="{'easy': game.planet1.startingStats.water > 0.85,
+              'medium': game.planet1.startingStats.water > 0.7 && game.planet1.startingStats.water <= 0.85,
+              'hard': game.planet1.startingStats.water <= 0.7}">
+              {{game.planet1.startingStats.water | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Atmosphere: </span>
+            <span [ngClass]="{'easy': game.planet1.startingStats.atmosphere > 0.85,
+              'medium': game.planet1.startingStats.atmosphere > 0.7 && game.planet1.startingStats.atmosphere <= 0.85,
+              'hard': game.planet1.startingStats.atmosphere <= 0.7}">
+              {{game.planet1.startingStats.atmosphere | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Fertility: </span>
+            <span [ngClass]="{'easy': game.planet1.startingStats.fertility > 0.85,
+              'medium': game.planet1.startingStats.fertility > 0.7 && game.planet1.startingStats.fertility <= 0.85,
+              'hard': game.planet1.startingStats.fertility <= 0.7}">
+              {{game.planet1.startingStats.fertility | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Mineral Deposits: </span>
+            <span [ngClass]="{'easy': game.planet1.startingStats.mineralDeposits > 0.85,
+              'medium': game.planet1.startingStats.mineralDeposits > 0.7 && game.planet1.startingStats.mineralDeposits <= 0.85,
+              'hard': game.planet1.startingStats.mineralDeposits <= 0.7}">
+              {{game.planet1.startingStats.mineralDeposits | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Flora &amp; Fauna: </span>
+            <span [ngClass]="{'easy': game.planet1.startingStats.floraFauna > 0.85,
+              'medium': game.planet1.startingStats.floraFauna > 0.7 && game.planet1.startingStats.floraFauna <= 0.85,
+              'hard': game.planet1.startingStats.floraFauna <= 0.7}">
+              {{game.planet1.startingStats.floraFauna | percent:'1.1-2'}}
+            </span>
+          </div>
+        </div>
         <div>
           <button ion-button secondary (click)="buttonClick('easy')">Land</button>
         </div>
@@ -47,10 +100,63 @@
     <ion-card>
       <ion-card-header>
         <span>{{game.planet2.name}} </span>
-        <span class="medium">(Medium: {{game.planet2.scoreModifier * 100}}% Final Score)</span>
+        <span class="medium">(Medium: {{game.planet2.scoreModifier | percent:'1.1-2'}} Final Score)</span>
       </ion-card-header>
       <ion-card-content>
-        <div>The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.</div>
+        <div>{{game.planet2.description}}
+          <div>
+            <span>Biome: </span>
+            <span [ngClass]="{'easy': game.planet2.startingStats.biome === 'Temperate' || 
+              game.planet2.startingStats.biome === 'Savannah', 
+              'medium': game.planet2.startingStats.biome === 'Jungle' ||
+              game.planet2.startingStats.biome === 'Taiga',
+              'hard': game.planet2.startingStats.biome === 'Tundra' ||
+              game.planet2.startingStats.biome === 'Desert' ||
+              game.planet2.startingStats.biome === 'Ocean'}">
+              {{game.planet2.startingStats.biome}}
+            </span>
+          </div>
+          <div>
+            <span>Water: </span>
+            <span [ngClass]="{'easy': game.planet2.startingStats.water > 0.85,
+              'medium': game.planet2.startingStats.water > 0.7 && game.planet2.startingStats.water <= 0.85,
+              'hard': game.planet2.startingStats.water <= 0.7}">
+              {{game.planet2.startingStats.water | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Atmosphere: </span>
+            <span [ngClass]="{'easy': game.planet2.startingStats.atmosphere > 0.85,
+              'medium': game.planet2.startingStats.atmosphere > 0.7 && game.planet2.startingStats.atmosphere <= 0.85,
+              'hard': game.planet2.startingStats.atmosphere <= 0.7}">
+              {{game.planet2.startingStats.atmosphere | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Fertility: </span>
+            <span [ngClass]="{'easy': game.planet2.startingStats.fertility > 0.85,
+              'medium': game.planet2.startingStats.fertility > 0.7 && game.planet2.startingStats.fertility <= 0.85,
+              'hard': game.planet2.startingStats.fertility <= 0.7}">
+              {{game.planet2.startingStats.fertility | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Mineral Deposits: </span>
+            <span [ngClass]="{'easy': game.planet2.startingStats.mineralDeposits > 0.85,
+              'medium': game.planet2.startingStats.mineralDeposits > 0.7 && game.planet2.startingStats.mineralDeposits <= 0.85,
+              'hard': game.planet2.startingStats.mineralDeposits <= 0.7}">
+              {{game.planet2.startingStats.mineralDeposits | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Flora &amp; Fauna: </span>
+            <span [ngClass]="{'easy': game.planet2.startingStats.floraFauna > 0.85,
+              'medium': game.planet2.startingStats.floraFauna > 0.7 && game.planet2.startingStats.floraFauna <= 0.85,
+              'hard': game.planet2.startingStats.floraFauna <= 0.7}">
+              {{game.planet2.startingStats.floraFauna | percent:'1.1-2'}}
+            </span>
+          </div>
+        </div>
         <div>
           <button ion-button secondary (click)="buttonClick('medium')">Land</button>
         </div>
@@ -61,10 +167,63 @@
     <ion-card>
       <ion-card-header>
         <span>{{game.planet3.name}} </span>
-        <span class="hard">(Hard: {{game.planet3.scoreModifier * 100}}% Final Score)</span>
+        <span class="hard">(Hard: {{game.planet3.scoreModifier | percent:'1.1-2'}} Final Score)</span>
       </ion-card-header>
       <ion-card-content>
-        <div>The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.</div>
+        <div>{{game.planet3.description}}
+          <div>
+            <span>Biome: </span>
+            <span [ngClass]="{'easy': game.planet3.startingStats.biome === 'Temperate' || 
+              game.planet3.startingStats.biome === 'Savannah', 
+              'medium': game.planet3.startingStats.biome === 'Jungle' ||
+              game.planet3.startingStats.biome === 'Taiga',
+              'hard': game.planet3.startingStats.biome === 'Tundra' ||
+              game.planet3.startingStats.biome === 'Desert' ||
+              game.planet3.startingStats.biome === 'Ocean'}">
+              {{game.planet3.startingStats.biome}}
+            </span>
+          </div>
+          <div>
+            <span>Water: </span>
+            <span [ngClass]="{'easy': game.planet3.startingStats.water > 0.85,
+              'medium': game.planet3.startingStats.water > 0.7 && game.planet3.startingStats.water <= 0.85,
+              'hard': game.planet3.startingStats.water <= 0.7}">
+              {{game.planet3.startingStats.water | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Atmosphere: </span>
+            <span [ngClass]="{'easy': game.planet3.startingStats.atmosphere > 0.85,
+              'medium': game.planet3.startingStats.atmosphere > 0.7 && game.planet3.startingStats.atmosphere <= 0.85,
+              'hard': game.planet3.startingStats.atmosphere <= 0.7}">
+              {{game.planet3.startingStats.atmosphere | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Fertility: </span>
+            <span [ngClass]="{'easy': game.planet3.startingStats.fertility > 0.85,
+              'medium': game.planet3.startingStats.fertility > 0.7 && game.planet3.startingStats.fertility <= 0.85,
+              'hard': game.planet3.startingStats.fertility <= 0.7}">
+              {{game.planet3.startingStats.fertility | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Mineral Deposits: </span>
+            <span [ngClass]="{'easy': game.planet3.startingStats.mineralDeposits > 0.85,
+              'medium': game.planet3.startingStats.mineralDeposits > 0.7 && game.planet3.startingStats.mineralDeposits <= 0.85,
+              'hard': game.planet3.startingStats.mineralDeposits <= 0.7}">
+              {{game.planet3.startingStats.mineralDeposits | percent:'1.1-2'}}
+            </span>
+          </div>
+          <div>
+            <span>Flora &amp; Fauna: </span>
+            <span [ngClass]="{'easy': game.planet3.startingStats.floraFauna > 0.85,
+              'medium': game.planet3.startingStats.floraFauna > 0.7 && game.planet3.startingStats.floraFauna <= 0.85,
+              'hard': game.planet3.startingStats.floraFauna <= 0.7}">
+              {{game.planet3.startingStats.floraFauna | percent:'1.1-2'}}
+            </span>
+          </div>
+        </div>
         <div>
           <button ion-button secondary (click)="buttonClick('hard')">Land</button>
         </div>
