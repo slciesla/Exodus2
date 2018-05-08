@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{planetName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div [ngClass]="{'fade-in': tutorial > 0}" class="no-opacity">
+    You wake up from your cryo-pod, groggy.
+  </div>
+  <div [ngClass]="{'fade-in': tutorial > 1}" class="no-opacity">
+    As captain of the ship, you are the first one to be awoken.
+  </div>
+  <div [ngClass]="{'fade-in': tutorial > 2}" class="no-opacity">
+    You must have arrived at a suitable planet for the new colony.
+  </div>
+  <div [ngClass]="{'fade-in': tutorial > 3}" class="no-opacity">
+    You have 40,000 colonists under your charge and they look to you to make the best decisions.
+  </div>
+  <div [ngClass]="{'fade-in': tutorial > 4}" class="no-opacity">
+    It appears as though the system you have arrived in has 3 potential planets for habitation.
+  </div>
+  <div [ngClass]="{'fade-in': tutorial > 5}" class="no-opacity">
+    Your first decision will be to pick where to land the ship and start a new life. This decision is irreversible.
+  </div>
+  <div [ngClass]="{'fade-in': tutorial > 6}" class="no-opacity">
+    Once the ship has landed, it cannot escape the gravity well of a planet.
+  </div>
+  <div [ngClass]="{'fade-in': tutorial > 7}" class="no-opacity">
+    <ion-card>
+      <ion-card-header>
+        <span>{{game.planet1.name}} </span>
+        <span class="easy">(Easy: {{game.planet1.scoreModifier * 100}}% Final Score)</span>
+      </ion-card-header>
+      <ion-card-content>
+        <div>The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.</div>
+        <div>
+          <button ion-button secondary (click)="buttonClick('easy')">Land</button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div [ngClass]="{'fade-in': tutorial > 8}" class="no-opacity">
+    <ion-card>
+      <ion-card-header>
+        <span>{{game.planet2.name}} </span>
+        <span class="medium">(Medium: {{game.planet2.scoreModifier * 100}}% Final Score)</span>
+      </ion-card-header>
+      <ion-card-content>
+        <div>The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.</div>
+        <div>
+          <button ion-button secondary (click)="buttonClick('medium')">Land</button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div [ngClass]="{'fade-in': tutorial > 9}" class="no-opacity">
+    <ion-card>
+      <ion-card-header>
+        <span>{{game.planet3.name}} </span>
+        <span class="hard">(Hard: {{game.planet3.scoreModifier * 100}}% Final Score)</span>
+      </ion-card-header>
+      <ion-card-content>
+        <div>The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.</div>
+        <div>
+          <button ion-button secondary (click)="buttonClick('hard')">Land</button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

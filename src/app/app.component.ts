@@ -3,12 +3,13 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { PlanetPage } from '../pages/planet/planet';
+import { ColonyPage } from '../pages/colony/colony';
 import { StatsPage } from '../pages/stats/stats';
 import { GameService } from '../services/game.service';
 import { Storage } from '@ionic/storage';
 import { OptionsPage } from '../pages/options/options';
-import { Game } from '../models/game';
+import { Game } from '../models';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ import { Game } from '../models/game';
 export class MyApp implements OnInit {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = PlanetPage;
+  rootPage: any = ColonyPage;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -28,7 +29,7 @@ export class MyApp implements OnInit {
   ngOnInit() {
     this.gameService.planetNameObs.subscribe(name => {
       this.pages = [
-        { title: name, component: PlanetPage },
+        { title: name, component: ColonyPage },
         { title: 'Stats', component: StatsPage },
         { title: 'Options', component: OptionsPage }
       ];
@@ -37,10 +38,10 @@ export class MyApp implements OnInit {
       return this.storage.get('game');
     }).then(val => {
       if (val) {
-        this.gameService.game = JSON.parse(val);
+        Object.assign(this.gameService.game, JSON.parse(CryptoJS.AES.decrypt(val, 'exodus').toString(CryptoJS.enc.Latin1)));
       } else {
-        this.gameService.game = new Game();
         console.log('No saved game found');
+        this.storage.set('game', CryptoJS.AES.encrypt(JSON.stringify(this.gameService.game), 'exodus').toString(CryptoJS.enc.Latin1));
       }
     });
   }

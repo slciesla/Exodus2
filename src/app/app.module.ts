@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
-import { PlanetPage } from '../pages/planet/planet';
+import { ColonyPage } from '../pages/colony/colony';
 import { StatsPage } from '../pages/stats/stats';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -15,19 +15,22 @@ import { OptionsPage } from '../pages/options/options';
 @NgModule({
   declarations: [
     MyApp,
-    PlanetPage,
+    ColonyPage,
     StatsPage,
     OptionsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['sqlite', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    PlanetPage,
+    ColonyPage,
     StatsPage,
     OptionsPage
   ],
