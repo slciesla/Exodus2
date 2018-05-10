@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Game } from '../models/game';
 import { UtilityService } from './utility.service';
+import { Planet } from '../models';
 
 @Injectable()
 export class GameService implements OnInit {
@@ -21,5 +22,11 @@ export class GameService implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  generatePlanets(num: number) {
+    for (let i = 0; i !== num; i++) {
+      this.game.planets.push(new Planet().buildPlanet(i + 1));
+    }
   }
 }

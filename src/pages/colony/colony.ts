@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import { NavController } from 'ionic-angular';
 import { Subscription } from 'rxjs/Subscription';
 
-import { GameService } from '../../services/game.service';
-import { UtilityService } from '../../services/utility.service';
 import { Game } from '../../models';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'colony-page',
@@ -18,7 +16,7 @@ export class ColonyPage implements OnInit, OnDestroy {
   tutorial = 0;
   game: Game;
 
-  constructor(public navCtrl: NavController, private gameService: GameService, private storage: Storage) {
+  constructor(public navCtrl: NavController, private gameService: GameService) {
     this.game = this.gameService.game;
   }
 

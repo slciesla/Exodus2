@@ -19,7 +19,8 @@ export class OptionsPage {
     this.storage.clear();
     this.gameService.planetName = 'Exodus';
     this.gameService.game = new Game();
-    this.storage.set('game', CryptoJS.AES.encrypt(JSON.stringify(this.gameService.game), 'exodus'));
+    this.gameService.generatePlanets(3);
+    this.storage.set('game', JSON.stringify(this.gameService.game));
     this.navCtrl.goToRoot({});
   }
 

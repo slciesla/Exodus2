@@ -37,11 +37,12 @@ export class MyApp implements OnInit {
     this.storage.ready().then(() => {
       return this.storage.get('game');
     }).then(val => {
-      if (val) {
-        Object.assign(this.gameService.game, JSON.parse(CryptoJS.AES.decrypt(val, 'exodus').toString(CryptoJS.enc.Latin1)));
+      if (val && val !== '') {
+        Object.assign(this.gameService.game, JSON.parse(val));
       } else {
         console.log('No saved game found');
-        this.storage.set('game', CryptoJS.AES.encrypt(JSON.stringify(this.gameService.game), 'exodus').toString(CryptoJS.enc.Latin1));
+        this.gameService.generatePlanets(3);
+        this.storage.set('game', JSON.stringify(this.gameService.game));
       }
     });
   }
